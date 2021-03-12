@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ProjectController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -43,4 +44,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::put('/customer', [CustomerController::class, 'store'])->name('customer.store');
 
     //PROJECTS
+    Route::get('/project', [ProjectController::class, 'index'])->name('project.index');
+
+    Route::get('/project/create', [ProjectController::class, 'create'])->name('project.create');
+
+    Route::get('/project/{id}/edit', [ProjectController::class, 'edit'])->name('project.edit');
+
+    Route::put('/project/{id}', [ProjectController::class, 'update'])->name('project.update');
+
+    Route::put('/project', [ProjectController::class, 'store'])->name('project.store');
+
 });
