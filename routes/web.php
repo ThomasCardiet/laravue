@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CustomerController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -30,6 +31,16 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
+    // CUSTOMERS
+    Route::get('/customer', [CustomerController::class, 'index'])->name('customer.index');
 
+    Route::get('/customer/create', [CustomerController::class, 'create'])->name('customer.create');
 
+    Route::get('/customer/{id}/edit', [CustomerController::class, 'edit'])->name('customer.edit');
+
+    Route::put('/customer/{id}', [CustomerController::class, 'update'])->name('customer.update');
+
+    Route::put('/customer', [CustomerController::class, 'store'])->name('customer.store');
+
+    //PROJECTS
 });
