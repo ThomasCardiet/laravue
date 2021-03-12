@@ -30,7 +30,7 @@ class ProjectController extends Controller
         $project = Project::findOrFail($id);
 
         $request->validate([
-            'client_id'       => ['required'],
+            'customer_id'       => ['required'],
             'last_name'       => ['required'],
             'first_name'    => ['required'],
             'email'  => ['required'],
@@ -43,7 +43,7 @@ class ProjectController extends Controller
         ]);
 
         $project->update($request->only(
-            'client_id',
+            'customer_id',
             'last_name',
             'first_name',
             'email',
@@ -60,7 +60,7 @@ class ProjectController extends Controller
 
     public function store(Request $request) {
         $request->validate([
-            'client_id'       => ['required'],
+            'customer_id'       => ['required'],
             'last_name'       => ['required'],
             'first_name'    => ['required'],
             'email'  => ['required'],
@@ -73,7 +73,7 @@ class ProjectController extends Controller
         ]);
 
         Project::create($request->only(
-            'client_id',
+            'customer_id',
             'last_name',
             'first_name',
             'email',
