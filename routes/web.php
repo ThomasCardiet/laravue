@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ProjectController;
+use App\Models\Customer;
+use App\Models\Project;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -29,7 +31,22 @@ Route::get('/', function () {
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
+        return Inertia::render('Dashboard', [
+            'customers' => [
+                'all' => Customer::all(),
+                'current_month' => Customer::whereMonth('created_at', '=', (new DateTime())->format('m'))
+                                    ->get(),
+                'last_month' => Customer::whereMonth('created_at', '=', (new DateTime())->format('m')-1)
+                    ->get(),
+            ],
+            'projects' => [
+                'all' => Project::all(),
+                'current_month' => Project::whereMonth('created_at', '=', (new DateTime())->format('m'))
+                    ->get(),
+                'last_month' => Project::whereMonth('created_at', '=', (new DateTime())->format('m')-1)
+                    ->get(),
+            ],
+        ]);
     })->name('dashboard');
 
     // CUSTOMERS
