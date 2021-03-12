@@ -27,10 +27,10 @@ export default {
             let result = 0;
             switch (type) {
                 case 'customers':
-                    result = ((this.customers.current_month.length-this.customers.last_month.length)/this.customers.last_month.length)*100;
+                    result = ((this.customers.current_month.length-this.customers.last_month.length)/(this.customers.last_month.length > 0 ? this.customers.last_month.length : 1))*100;
                     break;
                 case 'projects':
-                    result = ((this.projects.current_month.length-this.projects.last_month.length)/this.projects.last_month.length)*100;
+                    result = ((this.projects.current_month.length-this.projects.last_month.length)/(this.customers.last_month.length > 0 ? this.projects.last_month.length : 1))*100;
                     break;
             }
 
