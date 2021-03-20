@@ -4,7 +4,9 @@
 
 <script>
 export default {
-name: "Index.vue"
+name: "createproject"
+
+
 }
 </script>
 
