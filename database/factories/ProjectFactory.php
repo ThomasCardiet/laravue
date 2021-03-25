@@ -24,10 +24,7 @@ class ProjectFactory extends Factory
      */
     public function definition()
     {
-        $status = [
-            'En cours',
-            'Terminé',
-        ];
+        $status = [0,1,2];
 
         return [
             'customer_id'             => DB::table('customers')->get('id')->random(1)->first()->id,

@@ -2,7 +2,7 @@
     <AppLayout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Création d'un client
+                <p class="text-white">Créer un client</p>
             </h2>
         </template>
 

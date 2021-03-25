@@ -73,6 +73,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::put('/project', [ProjectController::class, 'store'])->name('project.store');
 
-    Route::put('/project/delete', [ProjectController::class, 'delete'])->name('project.delete');
+    Route::put('/project/{id}', [ProjectController::class, 'delete'])->name('project.delete');
 
 });

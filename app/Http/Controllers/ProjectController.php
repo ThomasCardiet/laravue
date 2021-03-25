@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Customer;
 use App\Models\Project;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -15,13 +16,16 @@ class ProjectController extends Controller
     }
 
     public function create() {
-        return Inertia::render('Project/Create');
+        return Inertia::render('Project/Create', [
+            'customers' => Customer::all()
+        ]);
     }
 
     public function edit($id) {
         $project = Project::findOrFail($id);
         return Inertia::render('Project/Edit', [
             'project' => $project,
+            'customers' => Customer::all()
         ]);
     }
 
@@ -33,6 +37,7 @@ class ProjectController extends Controller
             'customer_id'       => ['required'],
             'last_name'       => ['required'],
             'first_name'    => ['required'],
+            'phone_number'    => ['required'],
             'email'  => ['required'],
             'title'  => ['required'],
             'description'  => ['required'],
@@ -46,6 +51,7 @@ class ProjectController extends Controller
             'customer_id',
             'last_name',
             'first_name',
+            'phone_number',
             'email',
             'title',
             'description',
@@ -63,6 +69,7 @@ class ProjectController extends Controller
             'customer_id'       => ['required'],
             'last_name'       => ['required'],
             'first_name'    => ['required'],
+            'phone_number'    => ['required'],
             'email'  => ['required'],
             'title'  => ['required'],
             'description'  => ['required'],
@@ -76,6 +83,7 @@ class ProjectController extends Controller
             'customer_id',
             'last_name',
             'first_name',
+            'phone_number',
             'email',
             'title',
             'description',
@@ -84,6 +92,14 @@ class ProjectController extends Controller
             'status',
             'day_sell',
         ));
+
+        return redirect()->route('project.index');
+    }
+
+    public function delete($id) {
+
+        $project = Project::findOrFail($id);
+        $project->delete();
 
         return redirect()->route('project.index');
     }

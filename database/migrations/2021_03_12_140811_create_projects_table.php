@@ -24,7 +24,7 @@ class CreateProjectsTable extends Migration
             $table->string("description");
             $table->date("start_date");
             $table->date("end_date");
-            $table->string("status");
+            $table->integer("status");
             $table->integer("day_sell");
             $table->timestamps();
         });
