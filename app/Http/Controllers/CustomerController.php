@@ -10,7 +10,7 @@ class CustomerController extends Controller
 {
     public function index() {
         return Inertia::render('Customer/Index', [
-            'customers' => Customer::all()
+            'customers' => Customer::with('projects')->get()
         ]);
     }
 
@@ -84,6 +84,14 @@ class CustomerController extends Controller
             'postal_code',
             'city',
         ));
+
+        return redirect()->route('customer.index');
+    }
+
+    public function delete($id) {
+
+        $customer = Customer::findOrFail($id);
+        $customer->delete();
 
         return redirect()->route('customer.index');
     }

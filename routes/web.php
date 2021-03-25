@@ -60,6 +60,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::put('/customer', [CustomerController::class, 'store'])->name('customer.store');
 
+    Route::put('/customer/{id}', [CustomerController::class, 'delete'])->name('customer.delete');
+
     //PROJECTS
     Route::get('/project', [ProjectController::class, 'index'])->name('project.index');
 
@@ -70,5 +72,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::put('/project/{id}', [ProjectController::class, 'update'])->name('project.update');
 
     Route::put('/project', [ProjectController::class, 'store'])->name('project.store');
+
+    Route::put('/project/delete', [ProjectController::class, 'delete'])->name('project.delete');
 
 });

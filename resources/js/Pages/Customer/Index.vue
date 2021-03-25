@@ -1,8 +1,12 @@
 <template>
  <AppLayout>
      <template #header>
-         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+         <h2 class="font-semibold text-xl text-gray-800 leading-tight flex justify-between">
              <p class="text-white">Clients</p>
+
+             <a href="customer/create" class="mr-5 bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg">
+                 + Créer un client
+             </a>
          </h2>
      </template>
 
@@ -18,7 +22,7 @@
                          </th>
                          <th scope="col"
                              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                             descritpion
+                             description
                          </th>
 
                          <th scope="col"
@@ -37,13 +41,15 @@
                              {{ customer.society_social_reason }}
                          </td>
                          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                             {{ customer.society_description.substr(0, 20)}}...
+                             {{ substrDesc(customer.society_description)}}
                          </td>
 
+                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                             {{ customer.projects.length }}
+                         </td>
 
                          <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                             <a href="#" class="text-indigo-600 hover:text-indigo-900">Editer</a>
-
+                             <a :href="'/customer/'+customer.id+'/edit'" class="text-indigo-600 hover:text-indigo-900">Editer</a>
                          </td>
                      </tr>
                      </tbody>
@@ -59,8 +65,14 @@ import AppLayout from "@/Layouts/AppLayout";
 export default {
 name: "Index.vue",
     props:['customers'],
-
-    components: {AppLayout}
+    components: {AppLayout},
+    methods: {
+        substrDesc(desc) {
+            let max_length = 20;
+            if(desc.length < max_length) return desc;
+            return desc.substr(0, max_length)+'...';
+        }
+    }
 }
 </script>
 

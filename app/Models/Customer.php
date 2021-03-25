@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Project;
 
 class Customer extends Model
 {
@@ -21,4 +22,8 @@ class Customer extends Model
         'postal_code',
         'city',
     ];
+
+    public function projects() {
+        return $this->hasMany(Project::class);
+    }
 }

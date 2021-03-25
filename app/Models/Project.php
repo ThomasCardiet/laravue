@@ -22,4 +22,8 @@ class Project extends Model
         'status',
         'day_sell',
     ];
+
+    public function customer() {
+        return $this->belongsTo(Customer::class);
+    }
 }
